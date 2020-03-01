@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  smsbackend:
+    image: ${DOCKER_REGISTRY-}smsbackend
+    build:
+      context: .
+      dockerfile: SMSBackend/Dockerfile
+    ports:
+      - 3000:80
