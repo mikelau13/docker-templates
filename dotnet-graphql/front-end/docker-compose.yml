@@ -1,0 +1,16 @@
+# DEV ENVIRONMENT
+# This docker-compose file will start react server in dev mode.
+# react: http://localhost:8080
+
+
+version: '3'
+
+services:
+  react:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: template-front-end
+    command: npm run start
+    ports:
+      - 3000:8080

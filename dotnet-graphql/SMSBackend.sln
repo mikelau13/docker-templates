@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMSBackend", "SMSBackend\SMSBackend.csproj", "{B075AB34-8A90-4E1D-A1DA-B92DE62F90E0}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AACC734B-EE8B-47E8-A134-4DA4CE26FBD8}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "SMSBackend\docker-compose.dcproj", "{AACC734B-EE8B-47E8-A134-4DA4CE26FBD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

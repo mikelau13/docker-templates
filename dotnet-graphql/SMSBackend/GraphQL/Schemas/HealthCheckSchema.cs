@@ -10,6 +10,7 @@ namespace SMSBackend.GraphQL.Schemas
         public HealthCheckSchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<HealthCheckQuery>();
+            Mutation = resolver.Resolve<HealthCheckMutation>();
         }
     }
 }

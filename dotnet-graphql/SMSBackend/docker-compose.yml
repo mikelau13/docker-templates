@@ -1,0 +1,14 @@
+# This file is for Visual Studio to launch only the GraphQL server.
+# In order to launch the whole application, run docker-compose on the root folder instead.
+
+version: '3.4'
+
+services:
+  smsbackend:
+    image: ${DOCKER_REGISTRY-}smsbackend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: template-back-end
+    ports:
+      - 3001:80

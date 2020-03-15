@@ -48,7 +48,7 @@ namespace SMSBackend
             services.AddSingleton<HealthCheckMutation>();
             services.AddSingleton<HealthCheckType>();
             services.AddSingleton<HealthCheckInputType>();
-
+            services.AddCors();
             services.AddGraphQL();
 
         }
@@ -57,6 +57,11 @@ namespace SMSBackend
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
+            app.UseCors(builder => builder
+                .WithOrigins("http://localhost:3000")
+                .AllowCredentials()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
             app.UseGraphQL<ISchema>("/graphql");
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
             {

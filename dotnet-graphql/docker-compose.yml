@@ -6,5 +6,17 @@ services:
     build:
       context: .
       dockerfile: SMSBackend/Dockerfile
+    container_name: template-back-end
     ports:
-      - 3000:80
+      - 3001:80
+
+  react:
+    build:
+      context: front-end
+      dockerfile: Dockerfile
+    container_name: template-front-end
+    command: npm run start
+    # volumes:
+    #   - .:/usr/app
+    ports:
+      - 3000:8080
