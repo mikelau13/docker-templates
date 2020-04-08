@@ -1,0 +1,58 @@
+version: "3" 
+services:
+    coldfusion: 
+        container_name: myapp
+        build:
+          context: ./app
+          dockerfile: Dockerfile
+        image: app
+        depends_on:
+        - redis
+        - addons
+        ports:
+        - "8500:8500"
+        - "8501:8501"
+        volumes:
+        - "./app:/opt/coldfusion/cfusion/wwwroot/web-app"
+        env_file:
+        - coldfusion.env
+        healthcheck:
+           test: curl -f http://addons:8989/solr/ || exit 1  
+           interval: 1m
+           timeout: 3s
+        deploy:
+           mode: replicated
+           replicas: 2
+           restart_policy:
+              condition: on-failure
+           update_config:
+              parallelism: 1
+              delay: 10s
+        networks: 
+        - webnet
+ 
+    addons:
+        container_name: mycfaddons
+        image: eaps-docker-coldfusion.bintray.io/cf/addons
+        environment:
+        - acceptEULA=YES
+        ports: 
+        - "8989:8989"
+        networks:
+        - webnet
+ 
+    redis:
+        container_name: myredis
+        image: redis:latest
+        ports:
+        - "6381:6379"
+        volumes:
+        - "redis_data:/data"
+        networks:
+        - webnet
+ 
+volumes:
+    redis_data:
+ 
+networks:
+    webnet:
