@@ -1,0 +1,47 @@
+# ./docker-compose.yml
+
+version: '3.8'
+
+services:
+
+  api:
+    build:
+      context: ./nodejs-api-resify
+    container_name: nodejs-api-resify-dev
+    command: npm start
+    volumes:
+      - .:/usr/api
+    ports:
+      - 8092:3000
+    networks:
+      - template-network
+
+  graphql:
+    build:
+      context: ./nodejs-graphql-apollo
+    container_name: nodejs-graphql-apollo-dev
+    command: npm run dev
+    volumes:
+      - .:/usr/graphql
+    ports:
+      - 8091:4000
+    networks:
+      - template-network
+
+  react:
+    build:
+      context: ./nodejs-react
+    container_name: nodejs-react-dev
+    command: npm start
+    volumes:
+      - .:/usr/react
+    ports:
+      - 8090:3000
+    networks:
+      - template-network    
+
+networks:
+  template-network:
+    name: template-network
+    driver: bridge
+
